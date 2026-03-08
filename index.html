@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>競合リサーチ｜エニタイムフィットネス 笠懸 × 吉岡</title>
+  <meta name="description" content="エニタイムフィットネス アクロスプラザ笠懸店・前橋吉岡店の競合対策・戦略企画ダッシュボード">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ===== Navigation ===== -->
+  <nav class="nav" id="nav">
+    <a href="#" class="nav-brand" onclick="navigate('dashboard'); return false;">
+      <span class="nav-brand-icon">📊</span>
+      <span>競合リサーチ</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><button class="nav-link active" data-section="dashboard" onclick="navigate('dashboard')">ダッシュボード</button></li>
+      <li><button class="nav-link" data-section="comparison" onclick="navigate('comparison')">店舗比較</button></li>
+      <li><button class="nav-link" data-section="machines" onclick="navigate('machines')">マシン比較</button></li>
+      <li><button class="nav-link" data-section="competitors" onclick="navigate('competitors')">競合情報</button></li>
+      <li><button class="nav-link" data-section="swot" onclick="navigate('swot')">SWOT分析</button></li>
+      <li><button class="nav-link" data-section="strategy" onclick="navigate('strategy')">戦略メモ</button></li>
+      <li><button class="nav-link" data-section="data" onclick="navigate('data')">データ管理</button></li>
+    </ul>
+    <button class="nav-mobile-btn" id="navToggle" onclick="toggleMobileNav()">☰</button>
+  </nav>
+
+  <!-- ===== Main Content ===== -->
+  <main class="main">
+
+    <!-- ── Dashboard ── -->
+    <section class="section active" id="sec-dashboard">
+      <div class="section-header">
+        <h1 class="section-title">ダッシュボード</h1>
+        <p class="section-subtitle">エニタイムフィットネス 2店舗の概要と競合状況</p>
+      </div>
+
+      <!-- Summary Stats -->
+      <div class="summary-stats" id="summaryStats"></div>
+
+      <!-- Store Cards -->
+      <div class="dashboard-grid" id="storeCards"></div>
+
+
+    </section>
+
+    <!-- ── Store Comparison ── -->
+    <section class="section" id="sec-comparison">
+      <div class="section-header">
+        <h1 class="section-title">店舗比較</h1>
+        <p class="section-subtitle">基本情報・料金・設備の横並び比較</p>
+      </div>
+      <div class="card">
+        <div class="comparison-container">
+          <table class="comparison-table" id="comparisonTable"></table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Machine Comparison ── -->
+    <section class="section" id="sec-machines">
+      <div class="section-header">
+        <h1 class="section-title">マシン比較</h1>
+        <p class="section-subtitle">各エリアのマシンラインナップ差分をハイライト</p>
+      </div>
+      <div class="machine-legend">
+        <span class="legend-item"><span class="legend-dot unique"></span> この店舗のみ</span>
+        <span class="legend-item"><span class="legend-dot common"></span> 共通マシン</span>
+      </div>
+      <div id="machineComparison"></div>
+    </section>
+
+    <!-- ── Competitor Info ── -->
+    <section class="section" id="sec-competitors">
+      <div class="section-header">
+        <h1 class="section-title">競合情報</h1>
+        <p class="section-subtitle">各店舗の半径10km圏内の競合フィットネスジム</p>
+      </div>
+
+      <!-- Store selector -->
+      <div class="swot-store-selector" id="compStoreSelector"></div>
+
+      <!-- Threat summary -->
+      <div class="summary-stats" id="compThreatSummary"></div>
+
+      <!-- Competitor cards -->
+      <div class="competitor-grid" id="competitorGrid"></div>
+
+      <!-- Add custom competitor -->
+      <button class="btn-add-competitor" id="btnShowAddCompetitor" onclick="toggleAddCompetitorForm()">
+        ＋ 競合ジムを手動追加
+      </button>
+      <div class="add-competitor-form" id="addCompetitorForm" style="display:none;">
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">ジム名 *</label>
+            <input class="form-input" id="compName" placeholder="例: ゴールドジム前橋店">
+          </div>
+          <div class="form-group">
+            <label class="form-label">種別</label>
+            <input class="form-input" id="compType" placeholder="例: 24hジム / パーソナル / 総合">
+          </div>
+          <div class="form-group">
+            <label class="form-label">月額料金</label>
+            <input class="form-input" id="compPrice" placeholder="例: ¥8,000">
+          </div>
+          <div class="form-group">
+            <label class="form-label">営業時間</label>
+            <input class="form-input" id="compHours" placeholder="例: 24時間 / 10:00-22:00">
+          </div>
+          <div class="form-group">
+            <label class="form-label">距離</label>
+            <input class="form-input" id="compDistance" placeholder="例: 約3km">
+          </div>
+          <div class="form-group">
+            <label class="form-label">脅威度</label>
+            <select class="form-input" id="compThreat">
+              <option value="high">高</option>
+              <option value="medium" selected>中</option>
+              <option value="low">低</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">評価(口コミ)</label>
+            <input class="form-input" id="compRating" placeholder="例: Google 4.0★">
+          </div>
+          <div class="form-group full-width">
+            <label class="form-label">住所</label>
+            <input class="form-input" id="compAddress" placeholder="例: 群馬県前橋市...">
+          </div>
+          <div class="form-group full-width">
+            <label class="form-label">特徴 / メモ</label>
+            <input class="form-input" id="compNotes" placeholder="例: プール付き、パーソナル強化">
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-secondary" onclick="toggleAddCompetitorForm()">キャンセル</button>
+            <button class="btn btn-primary" onclick="addCompetitor()">追加する</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SWOT Analysis ── -->
+    <section class="section" id="sec-swot">
+      <div class="section-header">
+        <h1 class="section-title">SWOT分析</h1>
+        <p class="section-subtitle">各店舗の強み・弱み・機会・脅威を分析</p>
+      </div>
+      <div class="swot-store-selector" id="swotSelector"></div>
+      <div class="swot-grid" id="swotGrid"></div>
+    </section>
+
+    <!-- ── Strategy & Action Plan ── -->
+    <section class="section" id="sec-strategy">
+      <div class="section-header">
+        <h1 class="section-title">戦略メモ &amp; アクションプラン</h1>
+        <p class="section-subtitle">競合対策の戦略メモとアクションアイテム管理</p>
+      </div>
+      <div class="strategy-grid">
+        <div class="card strategy-memo">
+          <div class="card-header">
+            <h3 class="card-title">📝 戦略メモ</h3>
+          </div>
+          <textarea class="memo-textarea" id="strategyMemo" placeholder="キャンペーン戦略、差別化ポイント、改善アイデアなどを自由に記述..."></textarea>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">✅ アクションプラン</h3>
+          </div>
+          <ul class="action-list" id="actionList"></ul>
+          <div class="action-add-form">
+            <input class="action-add-input" id="actionInput" placeholder="新しいアクションアイテムを入力..."
+              onkeydown="if(event.key==='Enter')addAction()">
+            <button class="action-add-btn" onclick="addAction()">追加</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Data Management ── -->
+    <section class="section" id="sec-data">
+      <div class="section-header">
+        <h1 class="section-title">データ管理</h1>
+        <p class="section-subtitle">他のPCとデータを共有するためのバックアップ機能</p>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">💾 データの引き継ぎ (エクスポート / インポート)</h3>
+        </div>
+        <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 20px; line-height: 1.6;">
+          現在このブラウザ（PC）に保存されている競合情報・SWOT・メモなどをファイルとして保存します。<br>
+          保存したファイルを別のPCやスマホなどに転送し、この画面で「インポート」することでデータを共有できます。
+        </p>
+        <div style="display: flex; gap: 16px; margin-top: 16px; flex-wrap: wrap;">
+          <button class="btn btn-primary" onclick="exportData()">⬇️ データを保存する (エクスポート)</button>
+          <label class="btn btn-secondary" style="cursor: pointer; display: inline-flex; align-items: center; justify-content: center; margin: 0;">
+            ⬆️ データを読込 (インポート)
+            <input type="file" accept=".json" style="display: none;" onchange="importData(event)">
+          </label>
+          <button class="btn" style="background:#ef4444; color:white; border:none;" onclick="resetToDefault()">🔄 最初からやり直す (データリセット)</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
