@@ -521,7 +521,7 @@ const DEFAULT_COMPETITORS = {
       address: "〒370-3602 群馬県北群馬郡吉岡町大久保891-1",
       distance: "約1km",
       threat: "high",
-      url: "https://werea24.com/",
+      url: "https://werea24.com/maebashiyoshioka/",
       rating: "-",
       notes: "フォリオ吉岡ショッピングセンター内。すでに登録されている店舗と同一の可能性。料金が安く立地も近いため高脅威。",
     },
