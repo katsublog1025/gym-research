@@ -166,7 +166,7 @@ const DEFAULT_COMPETITORS = {
       address: "〒379-2311 群馬県みどり市笠懸町阿左美2815-5",
       distance: "約1km",
       threat: "high",
-      url: "https://gympark.jp/",
+      url: "https://gympark.co.jp/", // gympark.jp is returning SSL errors currently
       rating: "Google 4.4★",
       notes: "【最大の価格競合】月額¥2,980は当店の約40%。入会金¥11,000（即日入会で無料）、年間管理料¥5,478。ライフフィットネス社の最新マシン導入。暗闘スタジオプログラム、ヒップ専用マシン充実。スタジオ使い放題。当店比で月額¥4,200安い。対策：マシンの質・ブランド力・全国利用可能を訴求。",
     },
@@ -192,7 +192,7 @@ const DEFAULT_COMPETITORS = {
       address: "〒376-0013 群馬県桐生市広沢町6丁目320-1",
       distance: "約8km",
       threat: "high",
-      url: "https://sporesh.jp/kiryu/",
+      url: "https://sporesh.jp/", // specific kiryu page was returning 404
       rating: "Google 3.8★",
       notes: "【温泉付きは唯一無二】天然温泉「ゆらぶ」併設（露天風呂・高濃度炭酸泉・ロウリュウサウナ）。AIサーキットマシン「バイオサーキット」導入で初心者にも優しい。暗闇スタジオ、ホットヨガ、ホットコラーゲンスタジオ等。年契約¥7,700は当店並。温泉+ジムで女性層が流れるリスク。対策：価格同等でも付加価値で劣る。リフレッシュ目的の層は奪われる可能性。",
     },
@@ -400,7 +400,7 @@ const DEFAULT_COMPETITORS = {
       address: "群馬県伊勢崎市東町2602",
       distance: "約9km",
       threat: "medium",
-      url: "https://finefit.jp/",
+      url: "http://www.finefit.jp/isesaki/",
       rating: "Google 評価確認中",
       notes: "ホットヨガスタジオとジムを併設。溶岩石による遠赤外線効果のあるホットヨガが特徴で、女性層への訴求力が高い。",
     },
